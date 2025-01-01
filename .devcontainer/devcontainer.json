@@ -1,0 +1,14 @@
+{
+  "name": "Haskell",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "formulahendry.code-runner",
+        "mogeko.haskell-extension-pack"
+      ]
+    }
+  }
+}
