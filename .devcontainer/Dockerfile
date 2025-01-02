@@ -17,8 +17,8 @@ ENV GHCUP_INSTALL_BASE_PREFIX="/home/$USERNAME"
 ENV BOOTSTRAP_HASKELL_NONINTERACTIVE=1
 
 RUN curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | sh
-RUN ghcup install ghc 9.8.2
-RUN ghcup install hls 2.9.0.0
+RUN ghcup install ghc 9.8.4
+RUN ghcup install hls 2.9.0.1
 
 RUN cabal update 
 RUN cabal install hlint
