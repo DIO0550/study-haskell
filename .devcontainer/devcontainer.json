@@ -5,10 +5,12 @@
   },
   "customizations": {
     "vscode": {
-      "extensions": [
-        "formulahendry.code-runner",
-        "mogeko.haskell-extension-pack"
-      ]
+      "extensions": ["haskell.haskell", "justusadam.language-haskell"],
+      "settings": {
+        "haskell.checkProject": true,
+        "haskell.formattingProvider": "fourmolu",
+        "haskell.manageHLS": "GHCup"
+      }
     }
   }
 }

@@ -35,6 +35,8 @@ library
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints
   build-depends:
       base >=4.7 && <5
+    , blaze-html
+    , containers
     , scotty
     , text
     , wai
@@ -53,6 +55,8 @@ executable MineSweeper-exe
   build-depends:
       MineSweeper
     , base >=4.7 && <5
+    , blaze-html
+    , containers
     , scotty
     , text
     , wai
@@ -72,6 +76,8 @@ test-suite MineSweeper-test
   build-depends:
       MineSweeper
     , base >=4.7 && <5
+    , blaze-html
+    , containers
     , scotty
     , text
     , wai

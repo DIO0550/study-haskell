@@ -11,6 +11,13 @@ packages:
       size: 1701
   original:
     hackage: scotty-0.12.1
+- completed:
+    hackage: blaze-html-0.9.1.2@sha256:2e40ad3828320b72122f09754091fb686fa0fd4c083769f17ef84584972ec450,3020
+    pantry-tree:
+      sha256: ab0c6aad7511b73a15fa67c21d8b2e7c2028b9ab13cb5d69e7c08f2d4e375e9e
+      size: 2227
+  original:
+    hackage: blaze-html-0.9.1.2
 snapshots:
 - completed:
     sha256: a81fb3877c4f9031e1325eb3935122e608d80715dc16b586eb11ddbff8671ecd

@@ -25,6 +25,8 @@ dependencies:
   - text
   - wai
   - warp
+  - blaze-html 
+  - containers 
 
 ghc-options:
 - -Wall
