@@ -22,11 +22,12 @@ description:         Please see the README on GitHub at <https://github.com/gith
 dependencies:
   - base >= 4.7 && < 5
   - scotty
-  - text
+  - blaze-html
   - wai
-  - warp
-  - blaze-html 
-  - containers 
+  - wai-middleware-static
+  - text
+  - containers
+  - transformers
 
 ghc-options:
 - -Wall
@@ -41,6 +42,11 @@ ghc-options:
 
 library:
   source-dirs: src
+  exposed-modules:
+    - App
+    - MineSweeper.Types
+    - MineSweeper.Web
+    - MineSweeper.Game
 
 executables:
   MineSweeper-exe:

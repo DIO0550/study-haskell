@@ -4,5 +4,7 @@ packages:
 extra-deps:
   - scotty-0.12.1
   - blaze-html-0.9.1.2
+  - wai-3.2.4
+  - wai-middleware-static-0.8.3
 system-ghc: true
 allow-newer: true

@@ -26,6 +26,9 @@ source-repository head
 library
   exposed-modules:
       App
+      MineSweeper.Types
+      MineSweeper.Web
+      MineSweeper.Game
   other-modules:
       Paths_MineSweeper
   autogen-modules:
@@ -39,8 +42,9 @@ library
     , containers
     , scotty
     , text
+    , transformers
     , wai
-    , warp
+    , wai-middleware-static
   default-language: Haskell2010
 
 executable MineSweeper-exe
@@ -59,8 +63,9 @@ executable MineSweeper-exe
     , containers
     , scotty
     , text
+    , transformers
     , wai
-    , warp
+    , wai-middleware-static
   default-language: Haskell2010
 
 test-suite MineSweeper-test
@@ -80,6 +85,7 @@ test-suite MineSweeper-test
     , containers
     , scotty
     , text
+    , transformers
     , wai
-    , warp
+    , wai-middleware-static
   default-language: Haskell2010
