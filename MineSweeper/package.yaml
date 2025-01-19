@@ -28,6 +28,8 @@ dependencies:
   - text
   - containers
   - transformers
+  - random
+  - time
 
 ghc-options:
 - -Wall

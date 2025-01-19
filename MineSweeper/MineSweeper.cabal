@@ -40,8 +40,10 @@ library
       base >=4.7 && <5
     , blaze-html
     , containers
+    , random
     , scotty
     , text
+    , time
     , transformers
     , wai
     , wai-middleware-static
@@ -61,8 +63,10 @@ executable MineSweeper-exe
     , base >=4.7 && <5
     , blaze-html
     , containers
+    , random
     , scotty
     , text
+    , time
     , transformers
     , wai
     , wai-middleware-static
@@ -83,8 +87,10 @@ test-suite MineSweeper-test
     , base >=4.7 && <5
     , blaze-html
     , containers
+    , random
     , scotty
     , text
+    , time
     , transformers
     , wai
     , wai-middleware-static
