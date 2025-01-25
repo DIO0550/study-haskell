@@ -21,7 +21,7 @@ description:         Please see the README on GitHub at <https://github.com/gith
 
 dependencies:
   - base >= 4.7 && < 5
-  - scotty
+  - scotty >= 0.21 && < 0.22
   - blaze-html
   - wai
   - wai-middleware-static
@@ -30,6 +30,8 @@ dependencies:
   - transformers
   - random
   - time
+  - aeson
+  - bytestring
 
 ghc-options:
 - -Wall
