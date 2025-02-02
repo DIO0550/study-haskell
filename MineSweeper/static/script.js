@@ -1,19 +1,21 @@
 
 
 function handleClick(row, col) {
-    fetch(`/click/${row}/${col}`, {
+    fetch(`/click`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
-        }
+        },
+        body: JSON.stringify({cellRow: row, cellCol: col})
     })
-    .then(response => response.json())
+    .then(response =>  response.json())
     .then(data => {
         const cell = document.getElementById(`cell-${row}-${col}`);
-        if (data.hasMine) {
+        const hasMine = data.cell.hasMine
+        if (hasMine) {
             cell.innerHTML = '💣';
         } else {
-            cell.innerHTML = data.neighborMines || '　';
+            cell.innerHTML = data.cell.neighborMines || '　';
         }
     });
 

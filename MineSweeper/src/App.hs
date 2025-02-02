@@ -5,10 +5,9 @@ module App
 
 import MineSweeper.Types
     ( GameState(..)
-    , CellState(..)
-    , Cell(..)
-    , Status(..)
-    , ClickResult(..)
+    , cellRow
+    , cellCol
+    , ClickResult(..), ClickData
     )
 
 import MineSweeper.Web
@@ -16,26 +15,17 @@ import MineSweeper.Web
     )
 
 import Web.Scotty as S
-import Text.Blaze.Html5 as H
-import Text.Blaze.Html5.Attributes as A
 import Text.Blaze.Html.Renderer.Text (renderHtml)
 
 import Network.Wai.Middleware.Static
-import Network.Wai (pathInfo, requestMethod, rawPathInfo)
 
-import Control.Monad.IO.Class (liftIO)
 import Data.IORef
 
 import qualified Data.Map as Map
 import MineSweeper.Game hiding (pack)
-import Data.Text.Lazy (Text, pack)
-import qualified MineSweeper.Types
+import Data.Text.Lazy (pack)
 import qualified Data.ByteString.Lazy.Char8 as BL
 import qualified Data.Aeson as A  
-import Data.Aeson ((.=), ToJSON, Key)
-import Data.String (fromString)
-import qualified Data.Text
-import qualified Data.Text as T
 
 
 
@@ -48,20 +38,20 @@ startApp = do
         get "/" $ do
             S.html $ renderHtml gamePage
 
-        get "/click/:row/:col" $ do 
-            row <- S.pathParam (pack "row")  -- String -> Text に変換
-            col <- S.pathParam (pack "col")
+        post "/click" $ do 
+            clickData <- jsonData :: ActionM ClickData
 
-            gstate <- liftIO $ readIORef gameState
+            let row = cellRow clickData
+            let col = cellCol clickData
 
             liftIO $ modifyIORef gameState (handleClick row col)
             newState <- liftIO $ readIORef gameState
 
 
             let result = ClickResult (gameStatus newState) ( board newState Map.! (row, col) )
-            let jsonByteString = A.encode result
-            liftIO $ BL.putStrLn jsonByteString  -- liftIOを使ってIOアクションを持ち上げる
+            -- let jsonByteString = A.encode result
+            -- liftIO $ BL.putStrLn jsonByteString  -- liftIOを使ってIOアクションを持ち上げる
 
-            let jsonString = BL.unpack jsonByteString
-            json jsonString
+            setHeader "Content-Type" "application/json"
+            json result 
         

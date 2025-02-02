@@ -1,0 +1,6 @@
+cradle:
+  stack:
+    - path: "./src"
+      component: "MineSweeper:lib"
+    - path: "./app"
+      component: "MineSweeper:exe:MineSweeper-exe"

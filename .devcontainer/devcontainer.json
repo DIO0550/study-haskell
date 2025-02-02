@@ -6,11 +6,7 @@
   "customizations": {
     "vscode": {
       "extensions": ["haskell.haskell", "justusadam.language-haskell"],
-      "settings": {
-        "haskell.checkProject": true,
-        "haskell.formattingProvider": "fourmolu",
-        "haskell.manageHLS": "GHCup"
-      }
+
     }
   }
 }

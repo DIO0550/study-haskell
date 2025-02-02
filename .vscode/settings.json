@@ -1,0 +1,14 @@
+{
+    "haskell.checkProject": true,
+        "haskell.formattingProvider": "fourmolu",
+        "haskell.manageHLS": "GHCup",
+        "editor.formatOnSave": true,
+        "haskell.serverExecutablePath": "haskell-language-server-wrapper",
+        "haskell.ghcupExecutablePath": "ghcup",
+        "haskell.toolchain": {
+            "ghc": "9.8.2",
+            "hls": "2.9.0.1",
+            "cabal": "latest",
+            "stack": "latest"
+        }
+}

@@ -1,6 +1,6 @@
 cabal-version: 2.2
 
--- This file has been generated from package.yaml by hpack version 0.37.0.
+-- This file has been generated from package.yaml by hpack version 0.36.0.
 --
 -- see: https://github.com/sol/hpack
 
@@ -43,7 +43,7 @@ library
     , bytestring
     , containers
     , random
-    , scotty ==0.21.*
+    , scotty ==0.22.*
     , text
     , time
     , transformers
@@ -68,7 +68,7 @@ executable MineSweeper-exe
     , bytestring
     , containers
     , random
-    , scotty ==0.21.*
+    , scotty ==0.22.*
     , text
     , time
     , transformers
@@ -94,7 +94,7 @@ test-suite MineSweeper-test
     , bytestring
     , containers
     , random
-    , scotty ==0.21.*
+    , scotty ==0.22.*
     , text
     , time
     , transformers

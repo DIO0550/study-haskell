@@ -10,7 +10,7 @@ import MineSweeper.Types
     )
 import Data.IORef
 import qualified Data.Map as Map
-import Data.Text.Lazy (Text, pack, count)
+import Data.Text.Lazy (Text, pack)
 import System.Random
 import Data.Time.Clock
 

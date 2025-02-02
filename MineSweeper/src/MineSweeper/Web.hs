@@ -1,9 +1,7 @@
 module MineSweeper.Web where
 
-import Web.Scotty as S
 import Text.Blaze.Html5 as H
 import Text.Blaze.Html5.Attributes as A
-import Text.Blaze.Html.Renderer.Text (renderHtml)
 
 gamePage :: Html
 gamePage = docTypeHtml $ do

@@ -5,12 +5,12 @@
 
 packages:
 - completed:
-    hackage: scotty-0.12.1@sha256:15c06ece267187c4324645e54f2104a63fe3eb8ce6eb5698e4093735daba1f1a,5437
+    hackage: scotty-0.22@sha256:b3c799b3c4896176342062c1140c290ffb9a8d81e6da2ea3e12f7a83cbda78d4,6013
     pantry-tree:
-      sha256: 3041974be2f367b74a696a2a5ea19948f9c5a7ca68e4e92092aceaf1de50fd9b
-      size: 1701
+      sha256: ec781405d9d771ad8e0b0d6f350b4c4296104665668fc7263ba36839f674d835
+      size: 2138
   original:
-    hackage: scotty-0.12.1
+    hackage: scotty-0.22
 - completed:
     hackage: blaze-html-0.9.1.2@sha256:2e40ad3828320b72122f09754091fb686fa0fd4c083769f17ef84584972ec450,3020
     pantry-tree:
@@ -34,7 +34,7 @@ packages:
     hackage: wai-middleware-static-0.8.3
 snapshots:
 - completed:
-    sha256: 7b975b104cb3dbf0c297dfd01f936a4d2ee523241dd0b1ae960522b833fe3027
-    size: 714096
-    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/lts/22/7.yaml
-  original: lts-22.7
+    sha256: 867086a789eaf6da9f48a56bb5e8bfd6df27b120023c144cc7bbec5c95717915
+    size: 669588
+    url: https://raw.githubusercontent.com/commercialhaskell/stackage-snapshots/master/nightly/2024/10/21.yaml
+  original: nightly-2024-10-21

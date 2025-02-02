@@ -1,10 +1,10 @@
-resolver: lts-22.7  #lts-21.25  # GHC 9.4.8用
+resolver: nightly-2024-10-21 # GHC 9.8.2 互換の最新のLTS
 packages:
-  - .
+- .
 extra-deps:
-  - scotty-0.22
-  - blaze-html-0.9.1.2
-  - wai-3.2.4
-  - wai-middleware-static-0.8.3
+- scotty-0.22
+- blaze-html-0.9.1.2
+- wai-3.2.4
+- wai-middleware-static-0.8.3
 system-ghc: true
 allow-newer: true

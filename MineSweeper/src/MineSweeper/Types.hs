@@ -1,3 +1,4 @@
+{-# LANGUAGE DeriveGeneric #-}
 
 module MineSweeper.Types
     ( GameState(..)
@@ -5,15 +6,16 @@ module MineSweeper.Types
     , Cell(..)
     , Status(..)
     , ClickResult(..)
+    , ClickData(..)
     ) where
 
 import qualified Data.Map as Map
 
 import qualified Data.Aeson as A  
-import Data.Aeson ((.=), ToJSON, Key)
+import Data.Aeson ((.=))
 import Data.String (fromString)
-import qualified Data.Text
 import qualified Data.Text as T
+import GHC.Generics
 
 
 -- ClickResultのToJSONインスタンス
@@ -74,3 +76,12 @@ data Cell = Cell {
 
 -- ゲームの状態
 data Status = Playing | GameOver | Won deriving Show
+
+
+data ClickData = ClickData 
+    { cellRow :: Int
+    , cellCol :: Int 
+    } deriving (Generic, Show)
+
+instance A.FromJSON ClickData
+instance A.ToJSON ClickData
