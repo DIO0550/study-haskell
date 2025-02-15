@@ -22,14 +22,21 @@ function handleClick(row, col) {
     return false;
 }
 
-function handleFlag(row, col) {
-    fetch(`/flag/${row}/${col}`, {
-        method: 'POST'
+function handleFlag(event, row, col) {
+    event.preventDefault()
+
+    fetch(`/flag`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({cellRow: row, cellCol: col})
     })
     .then(response => response.json())
     .then(data => {
         const cell = document.getElementById(`cell-${row}-${col}`);
-        if (data.isFlagged) {
+        const isFlagged = data.cell.state === "Flagged";
+        if (isFlagged) {
             cell.innerHTML = '🚩';
         } else {
             cell.innerHTML = '　';

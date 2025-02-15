@@ -25,7 +25,7 @@ import qualified Data.Map as Map
 import MineSweeper.Game hiding (pack)
 import Data.Text.Lazy (pack)
 import qualified Data.ByteString.Lazy.Char8 as BL
-import qualified Data.Aeson as A  
+import qualified Data.Aeson as A
 
 
 
@@ -38,7 +38,21 @@ startApp = do
         get "/" $ do
             S.html $ renderHtml gamePage
 
-        post "/click" $ do 
+        post "/flag" $ do
+            clickData <- jsonData :: ActionM ClickData
+
+            let row = cellRow clickData
+            let col = cellCol clickData
+        
+
+            liftIO $ modifyIORef gameState (handleFlag row col)
+            newState <- liftIO $ readIORef gameState
+
+            let result = ClickResult (gameStatus newState) ( board newState Map.! (row, col) )
+            setHeader "Content-Type" "application/json"
+            json result
+
+        post "/click" $ do
             clickData <- jsonData :: ActionM ClickData
 
             let row = cellRow clickData
@@ -53,5 +67,4 @@ startApp = do
             -- liftIO $ BL.putStrLn jsonByteString  -- liftIOを使ってIOアクションを持ち上げる
 
             setHeader "Content-Type" "application/json"
-            json result 
-        
+            json result

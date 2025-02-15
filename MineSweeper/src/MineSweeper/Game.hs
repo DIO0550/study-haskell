@@ -31,6 +31,22 @@ handleClick row col state =
 revealCell :: Cell -> Cell
 revealCell cell = cell { state = Open }
 
+handleFlag:: Int -> Int -> GameState -> GameState
+handleFlag row col state =
+    case gameStatus state of
+        Playing -> state { board = Map.adjust flagCell (row, col) (board state) }
+        _ -> state
+    
+
+
+flagCell:: Cell -> Cell
+flagCell cell = do {
+    case state cell of
+        Closed -> cell { state = Flagged }
+        Flagged -> cell { state = Closed }
+        Open -> cell
+}
+
 pack :: String -> Text
 pack = Data.Text.Lazy.pack
 

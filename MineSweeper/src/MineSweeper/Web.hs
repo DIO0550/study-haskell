@@ -21,7 +21,8 @@ gamePage = docTypeHtml $ do
                     sequence_ [
                         H.div ! A.class_ (toValue "cell") !
                             A.id (toValue $ "cell-" ++ show r ++ "-" ++ show c) $ do
-                            H.button ! A.onclick (toValue $ "return handleClick(" ++ show r ++ "," ++ show c ++ ")")
+                            H.button ! A.onclick (toValue $ "return handleClick(" ++ show r ++ "," ++ show c ++ ")") 
+                                              ! A.oncontextmenu (toValue $ "handleFlag(event," ++ show r ++ "," ++ show c ++ "); return false;")
                                    $ toHtml "□"
                                 
                             | c <- [0..7]
