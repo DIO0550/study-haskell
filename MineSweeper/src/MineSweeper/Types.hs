@@ -1,4 +1,5 @@
 {-# LANGUAGE DeriveGeneric #-}
+{-# LANGUAGE InstanceSigs #-}
 
 module MineSweeper.Types
     ( GameState(..)
@@ -23,17 +24,18 @@ import GHC.Generics
 
 -- GameStateのToJSONインスタンス
 instance A.ToJSON GameState where
-    toJSON state = A.object [
-        fromString "board" .= board state,
-        fromString "status" .= gameStatus state
+    toJSON :: GameState -> A.Value
+    toJSON gState = A.object [
+        fromString "board" .= board gState,
+        fromString "status" .= gameStatus gState
         ]
 
 -- CellのToJSONインスタンス
 instance A.ToJSON Cell where
-    toJSON (Cell hasMine cellState neighborMines) = A.object [
-        fromString "hasMine" .= hasMine,
+    toJSON (Cell hMine cellState nMines) = A.object [
+        fromString "hasMine" .= hMine,
         fromString "state" .= cellState,
-        fromString "neighborMines" .= neighborMines
+        fromString "neighborMines" .= nMines
         ]
 
 -- StatusのToJSONインスタンス

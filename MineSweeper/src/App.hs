@@ -7,11 +7,17 @@ import MineSweeper.Types
     ( GameState(..)
     , cellRow
     , cellCol
-    , ClickResult(..), ClickData
+    , ClickResult(..), ClickData, Cell (Cell), CellState (Closed)
     )
 
 import MineSweeper.Web
     ( gamePage
+    )
+
+import MineSweeper.Cell
+    ( openCell
+    , toggleFlag
+
     )
 
 import Web.Scotty as S
@@ -22,10 +28,9 @@ import Network.Wai.Middleware.Static
 import Data.IORef
 
 import qualified Data.Map as Map
-import MineSweeper.Game hiding (pack)
-import Data.Text.Lazy (pack)
-import qualified Data.ByteString.Lazy.Char8 as BL
-import qualified Data.Aeson as A
+import MineSweeper.Game hiding (
+    pack)
+
 
 
 
@@ -45,7 +50,7 @@ startApp = do
             let col = cellCol clickData
         
 
-            liftIO $ modifyIORef gameState (handleFlag row col)
+            liftIO $ modifyIORef gameState (toggleFlag row col)
             newState <- liftIO $ readIORef gameState
 
             let result = ClickResult (gameStatus newState) ( board newState Map.! (row, col) )
@@ -53,18 +58,28 @@ startApp = do
             json result
 
         post "/click" $ do
-            clickData <- jsonData :: ActionM ClickData
+            clickData <- (jsonData :: ActionM ClickData) `rescue` \errorMsg -> do
+                status status400
+                json $ object ["error" .= errorMsg, "status" .= "failed"]
+                finish
 
             let row = cellRow clickData
             let col = cellCol clickData
 
-            liftIO $ modifyIORef gameState (handleClick row col)
+            liftIO $ modifyIORef gameState (openCell row col)
             newState <- liftIO $ readIORef gameState
 
+            -- TODO: ここでゲームオーバーの状態を確認する
 
             let result = ClickResult (gameStatus newState) ( board newState Map.! (row, col) )
-            -- let jsonByteString = A.encode result
-            -- liftIO $ BL.putStrLn jsonByteString  -- liftIOを使ってIOアクションを持ち上げる
 
             setHeader "Content-Type" "application/json"
             json result
+
+        get "reset" $ do
+            liftIO $ modifyIORef gameState resetGame
+            newState <- liftIO $ readIORef gameState
+            let result = ClickResult (gameStatus newState) ( Cell False Closed 0 )
+            setHeader "Content-Type" "application/json"
+            json result
+

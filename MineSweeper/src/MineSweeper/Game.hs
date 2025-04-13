@@ -22,30 +22,7 @@ initialGameState = do
         gameStatus = Playing
     }
 
-handleClick :: Int -> Int -> GameState -> GameState
-handleClick row col state =
-    case gameStatus state of
-        Playing -> state { board = Map.adjust revealCell (row, col) (board state) }
-        _ -> state
 
-revealCell :: Cell -> Cell
-revealCell cell = cell { state = Open }
-
-handleFlag:: Int -> Int -> GameState -> GameState
-handleFlag row col state =
-    case gameStatus state of
-        Playing -> state { board = Map.adjust flagCell (row, col) (board state) }
-        _ -> state
-    
-
-
-flagCell:: Cell -> Cell
-flagCell cell = do {
-    case state cell of
-        Closed -> cell { state = Flagged }
-        Flagged -> cell { state = Closed }
-        Open -> cell
-}
 
 pack :: String -> Text
 pack = Data.Text.Lazy.pack
@@ -77,3 +54,7 @@ createBombs count seed =
         bombCoords = createBombsCoord count seed;
         boards = Map.fromList $ map (\x -> (x, Cell {hasMine = x `elem` bombCoords, state = Closed, neighborMines = countNeighborMines bombCoords x})) cells
     in boards
+
+
+resetGame :: GameState -> GameState
+resetGame gState = gState { board = createBombs 20 0, gameStatus = Playing }

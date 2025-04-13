@@ -51,6 +51,7 @@ library:
     - MineSweeper.Types
     - MineSweeper.Web
     - MineSweeper.Game
+    - MineSweeper.Cell
 
 executables:
   MineSweeper-exe:

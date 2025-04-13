@@ -29,6 +29,7 @@ library
       MineSweeper.Types
       MineSweeper.Web
       MineSweeper.Game
+      MineSweeper.Cell
   other-modules:
       Paths_MineSweeper
   autogen-modules:
